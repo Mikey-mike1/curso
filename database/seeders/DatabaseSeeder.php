@@ -26,6 +26,9 @@ class DatabaseSeeder extends Seeder
             'avatar' => 'default.png',
         ]);
 
+            User::factory(50)->create();
+
+
         $this->call(CursoSeeder::class); // Llama al seeder de cursos
 
     }
