@@ -7,3 +7,4 @@
     
     <p>Bienvenido a la pagina principal</p>
 @endsection
+
