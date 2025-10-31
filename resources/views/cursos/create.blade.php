@@ -5,7 +5,7 @@
 
 
 @section('contenido')
-      <form action="POST">
+      <form action="{{Route('cursos.store')}}" method="POST" class="space-y-6">
         @csrf
         <div>
             <label for="nombre" class="block text-sm font-medium leading-6 text-gray-900">Nombre del curso</label>

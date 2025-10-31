@@ -19,6 +19,17 @@ class CursoController extends Controller
         return view('cursos.create');
     }
 
+    public function store(Request $request)
+    {
+      $curso = new Curso();
+      $curso->nombre = $request->input('nombre');
+      $curso->descripcion = $request->input('descripcion');
+      $curso->categoria = $request->input('categoria');
+     $curso->save();
+
+     return redirect()->route('cursos.show', [$curso->nombre, $curso->descripcion]);
+    }
+
     public function show($curso, $categoria)
     {
         return view('cursos.show', compact('curso', 'categoria'));
