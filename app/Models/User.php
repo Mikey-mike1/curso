@@ -6,6 +6,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+
+
 
 class User extends Authenticatable
 {
@@ -45,4 +48,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    //MUTADOR
+protected function name(): Attribute // Hacer que el nombre se guarde en minúsculas
+{
+    return Attribute::make(
+        set: fn($value) => strtolower($value), // Convertir a minúsculas al guardar
+        get: fn($value) => ucfirst($value) // Convertir la primera letra a mayúscula al obtener
+    );
+}
+
 }

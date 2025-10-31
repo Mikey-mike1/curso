@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Curso;
 
 class CursoController extends Controller
 {
     public function index()
     {
+        $cursos = Curso::paginate();
         $nombre = 'Usuario Nuevo';
-        return view('cursos.index', compact('nombre'));
+        return view('cursos.index', compact('nombre', 'cursos'));
     }
 
     public function create()
