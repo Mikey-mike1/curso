@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <title>@yield('titulo')</title>
+
+    <style>
+      .active{
+        background: red;
+      }
+    </style>
   </head>
   <body>
   
@@ -20,10 +26,10 @@
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline space-x-4">
               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-white/5 hover:text-white" -->
-              <a href="{{ route('home') }}" aria-current="page" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white">Home</a>
-              <a href="{{ route('cursos.index') }}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Cursos</a>
-              <a href="{{ route('cursos.create') }}" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Crear Cursos</a>
-              <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Calendar</a>
+              <a href="{{ route('home') }}" aria-current="page" class="{{ request()->routeIs('home') ? 'active' : '' }} rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white">Home</a> 
+              <a href="{{ route('cursos.index') }}" class="{{ request()->routeIs('cursos.index') ? 'active' : '' }} rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Cursos</a>
+              <a href="{{ route('cursos.create') }}" class="{{ request()->routeIs('cursos.create') ? 'active' : '' }} rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Crear Cursos</a>
+              <a href="#" class=" rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Calendar</a>
               <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Reports</a>
             </div>
           </div>

@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Curso;
+use App\Http\Requests\StoreCurso;
 
 class CursoController extends Controller
 {
     public function index()
     {
-        $cursos = Curso::paginate();
+        $cursos = Curso::orderBy('id','Desc')->paginate();
         $nombre = 'Usuario Nuevo';
         return view('cursos.index', compact('nombre', 'cursos'));
     }
@@ -19,19 +20,35 @@ class CursoController extends Controller
         return view('cursos.create');
     }
 
-    public function store(Request $request)
-    {
-      $curso = new Curso();
-      $curso->nombre = $request->input('nombre');
-      $curso->descripcion = $request->input('descripcion');
-      $curso->categoria = $request->input('categoria');
-     $curso->save();
+public function store(StoreCurso $request)
+{
+    $curso = Curso::create($request->validated());
+    return redirect()->route('cursos.show', $curso->id);
+}
 
-     return redirect()->route('cursos.show', [$curso->nombre, $curso->descripcion]);
+public function show(Curso $curso)
+{
+    return view('cursos.show', compact('curso'));
+}
+
+
+
+    public function edit(Curso $curso)
+    {
+        return view('cursos.edit', compact('curso'));
     }
 
-    public function show($curso, $categoria)
-    {
-        return view('cursos.show', compact('curso', 'categoria'));
-    }
+public function update(StoreCurso $request, Curso $curso){
+    $curso->update($request->validated());
+       return redirect()->route('cursos.show', $curso)
+                     ->with('status', 'Curso actualizado correctamente');
+}
+    
+      
+     public function destroy($id){
+        $curso = Curso::findOrFail($id);
+        $curso->delete();
+        return redirect()->route('cursos.index')->with('status', 'Curso eliminado correctamente');
+     }
+    
 }
