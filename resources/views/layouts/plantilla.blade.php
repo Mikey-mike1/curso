@@ -29,7 +29,7 @@
               <a href="{{ route('home') }}" aria-current="page" class="{{ request()->routeIs('home') ? 'active' : '' }} rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white">Home</a> 
               <a href="{{ route('cursos.index') }}" class="{{ request()->routeIs('cursos.index') ? 'active' : '' }} rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Cursos</a>
               <a href="{{ route('cursos.create') }}" class="{{ request()->routeIs('cursos.create') ? 'active' : '' }} rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Crear Cursos</a>
-              <a href="#" class=" rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Calendar</a>
+              <a href="{{ route('contactanos.index') }}" class="{{ request()->routeIs('contactanos.index') ? 'active' : '' }}  rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Contactanos</a>
               <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-white/5 hover:text-white">Reports</a>
             </div>
           </div>

@@ -1,8 +1,12 @@
 <?php
 
+use App\Http\Controllers\ContactanosController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CursoController;
+use App\Mail\ContactanosMailable;
+use Illuminate\Support\Facades\Mail;
+
 
 Route::get('/', HomeController::class)->name('home');
 
@@ -17,4 +21,9 @@ Route::put('/cursos/{curso}','update')->name('cursos.update');
 Route::delete('/cursos/{id}', 'destroy')->name('cursos.destroy');
 });
 
+Route::controller(ContactanosController::class)->group(function(){
 
+Route::get('/contactanos', 'index' )->name('contactanos.index');
+Route::post('/contactanos', 'store' )->name('contactanos.store');
+
+});
